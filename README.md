@@ -2,6 +2,23 @@
 
 This project was bootstrapped with [OneStream](https://onestream.live).
 
+# Backend Task:
+
+## Setup a boiler-plate for backend and create a utility function file and implement the following functionalities.
+
+1) atob
+2) btoa
+3) areArraysEqual (two arrays of integer or strings are equal)
+4) timestamp to seconds (01:01:01 is 1 hour 1 minute 1 second) => 3661 seconds
+5) seconds to timestamp (3661 seconds) => 01:01:01
+6) generate hmac
+7) encrypt - decrypt
+
+
+<hr />
+
+# Fontend Task
+
 # IMPORTANT
 
 ## 1) Please review the all exsisiting components.
