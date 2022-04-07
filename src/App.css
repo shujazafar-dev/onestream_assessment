@@ -1,0 +1,113 @@
+.btn {
+  border: none;
+  width: 100%;
+  background : linear-gradient(270deg, #a11453 0%, #e1163c 100%);
+  color:  #fff;
+  height: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+}
+.btn:hover {
+  background : linear-gradient(270deg, #e1163c 0%, #e1163c 100%);
+}
+
+.main {
+  background: url('https://assets.onestream.live/webassets/website/BgOSLive.jpg') center center;
+  background-size: cover;
+  overflow-y: auto;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  padding: 20px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+header>img {
+  width: 150px
+}
+
+.os-h-sub-title {
+  font-size: 11px;
+  padding-left: 0.31%;
+}
+
+
+.home-container {
+  width: 100%;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 10% 10% 0;
+}
+
+.box {
+  display: flex;
+  align-items: stretch;
+  background: rgba(239, 239, 239, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 32, 44, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  padding: 0.33333%;
+}
+
+.os-todo-form-title {
+font-size: 24px;
+font-weight: 300;
+padding: 0.333%;
+text-shadow: 6px 4px 8px #00000070
+}
+.input-field {
+  width: 65%;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  border-right: 1px solid #c4c9ce;
+}
+
+
+
+.os-time-picker-container {
+  width: 20%;
+  border-right: 1px solid #9ea6ad;
+}
+.os-time-picker {
+  border: none !important;
+  border-color: none;
+  background: none;
+  padding: 10px;
+  width: 100%
+}
+
+.os-err-msg {
+  font-size: 10px;
+  color: red !important;
+}
+
+.os-tab-container {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  background-color: #efefef;
+}
+
+.rdtPicker {
+  background: #efefef;
+}
