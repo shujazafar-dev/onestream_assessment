@@ -1,28 +1,28 @@
 import React from "react";
 // import TimePicker from 'react-time-picker';
 import Datetime from 'react-datetime';
+import { connect } from 'react-redux';
+import { addReminder } from '../AppRedux/actions/todos.actions';
 
+class TodoForm extends React.Component {
 
-// pls dont change this from class component to a functional based component...
-// Try to solove problem in class component
-export class TodoForm extends React.Component {
-
-constructor(props) {
-  super(props)
-  this.state = {
-    value:  null
+  constructor (props) {
+    super(props)
   }
-}
 
   render() {
     const {
+      onChangeText,
+      time,
+      todoText,
       title,
-      onChangeReminderText,
-      onChangeHandler,
+      onTimeChange,
       errMessaege,
-      onSubmitHandler
+      onSubmit,
+      selectedTodo,
+      onUpdate,
+      onCancel
     } = this.props
-
 
     let inputProps = {
       placeholder: 'dd/mm/yyyy hh:mm ',
@@ -35,13 +35,24 @@ constructor(props) {
     return (<>
       <span className="os-todo-form-title">{title}</span>
       <section className='box'>
-        <input className='input-field' placeholder='type something to remind...' onChange={onChangeReminderText} />
+        <input className='input-field' value={todoText} placeholder='type something to remind...' onChange={onChangeText} />
         <span className='os-time-picker-container'>
           {/* <TimePicker hourPlaceholder='hh' minutePlaceholder='mm' format={'hh:mm'} className={'os-time-picker'} disableClock onChange={onChangeHandler} /> */}
-          <Datetime inputProps={inputProps} className={'os-time-picker'} value={this.state.value} onChange={onChangeHandler} />
+          <Datetime
+            value={(time) ? new Date(time) : ''}
+            onChange={onTimeChange}
+            className={'os-time-picker'}
+            inputProps={inputProps}
+            renderInput={(props) => {
+              return <input {...props} value={(time) ? props.value : ''} />
+            }}
+          />
         </span>
         <span style={{ width: '15%' }}>
-          <button className="btn" onClick={onSubmitHandler}>Add Reminder</button>
+          <button className="btn" onClick={selectedTodo ? onUpdate : onSubmit}> {selectedTodo ? "Update " : "Add "} Reminder</button>
+          {selectedTodo && (
+            <button className="btn" style={{ background: 'gray' }} onClick={onCancel}>Cancel</button>
+          )}
         </span>
       </section>
       {errMessaege && <span className="os-err-msg">{errMessaege}</span>}
@@ -49,3 +60,12 @@ constructor(props) {
   }
 }
 
+const mapStateToProps = (state) => ({
+  reminders: state.reminders
+})
+
+const mapDispatchToProps = {
+  addReminder
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)

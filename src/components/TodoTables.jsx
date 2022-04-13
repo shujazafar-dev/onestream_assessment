@@ -9,13 +9,26 @@ import {
   Td,
   TableCaption,
 } from '@chakra-ui/react'
+import { completeReminder, deleteReminder } from '../AppRedux/actions/todos.actions';
+import { connect } from 'react-redux';
+import { REMINDER_STATUSES } from '../constants';
 
-export function TodoTables({
-  size,
-  status,
-  todoList = new Array(size).fill('❤️')
-}) {
-  let date = new Date()
+function TodoTables(props) {
+
+  const completeReminder = (id) => {
+    props.completeReminder(id);
+  }
+
+  const updateReminder = (reminder) => {
+    props.setSelectedReminder(reminder)
+  }
+
+  const deleteReminder = (id) => {
+    props.deleteReminder(id);
+  }
+
+  const { reminders } = props;
+
   return (<Table variant='striped' colorScheme='linkedin'>
     <TableCaption>Made with ❤️ to choose a right person. @ OneStream.live</TableCaption>
     <Thead>
@@ -29,16 +42,26 @@ export function TodoTables({
     </Thead>
     <Tbody>
       {
-        todoList && todoList.map(
-          (todo, key) => (
+        reminders && reminders.length > 0 ? reminders?.map(
+          (reminder, key) => (
             <Tr key={key}>
               <Td>{key + 1}</Td>
-              <Td>Some importan work to do in assignment.</Td>
-              <Td>{status}</Td>
-              <Td isNumeric>{new Date()?.toString()?.substr(0, 25)}</Td>
-              <Td isNumeric>25.4</Td>
+              <Td>{reminder.todoText}</Td>
+              <Td>{reminder.status}</Td>
+              <Td isNumeric>{new Date(reminder.time)?.toString()?.substr(0, 25)}</Td>
+              <Td isNumeric>
+                <button className="btn" style={{ margin: '5px' }} onClick={completeReminder.bind(this, reminder._id)}>Done</button>
+                <button className="btn" style={{ margin: '5px', background: "blue" }} onClick={updateReminder.bind(this, reminder)}>Update</button>
+                {reminder.status === REMINDER_STATUSES.PENDING && (
+                  <button className="btn" style={{ margin: '5px', background: "gray" }} onClick={deleteReminder.bind(this, reminder._id)}>Delete</button>
+                )}
+              </Td>
             </Tr>
           )
+        ) : (
+          <>
+            No {props.status} Reminders
+          </>
         )
       }
     </Tbody>
@@ -53,3 +76,10 @@ export function TodoTables({
     </Tfoot>
   </Table>);
 }
+
+const mapDispatchToProps = {
+  completeReminder,
+  deleteReminder
+}
+
+export default connect(null, mapDispatchToProps)(TodoTables)
